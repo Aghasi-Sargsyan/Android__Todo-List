@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#319bfd"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/second_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Title"
+                android:textSize="50sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/second_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:layout_marginTop="20dp"
+                android:hint="Description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/second_title" />
+
+            <TextView
+                android:id="@+id/second_date"
+                android:hint="enter date"
+                android:textSize="30sp"
+                android:layout_marginTop="20dp"
+
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/second_description" />
+
+            <CheckBox
+                android:id="@+id/second_reminder"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="Reminder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/second_date" />
+
+            <CheckBox
+                android:id="@+id/second_repeat"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="Repeat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/second_reminder" />
+
+            <RadioGroup
+                android:id="@+id/second_radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/second_repeat"
+                android:layout_marginTop="20dp"
+                android:visibility="visible">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Daily" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content"
+                    android:text="Monthly" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Weekly" />
+            </RadioGroup>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                app:layout_constraintTop_toBottomOf="@+id/second_priority"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/second_priority"
+                android:layout_marginTop="20dp"
+                android:text="Priority 0"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/second_radioGroup"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>
