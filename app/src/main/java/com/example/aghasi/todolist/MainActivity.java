@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +11,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView mMainTitle, mMainDescription, mMainDate;
     ImageView mMainAdd;
-    public static final int ADD_NEW_EVENT_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivityForResult(intent,ADD_NEW_EVENT_CODE);
+                startActivityForResult(intent, Const.ADD_NEW_EVENT_CODE);
             }
         };
 
@@ -39,10 +37,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            if (requestCode == ADD_NEW_EVENT_CODE) {
-                String a = data.getStringExtra("title");
-                RepeatPeriod repeatPeriod = (RepeatPeriod) data.getSerializableExtra("repeatPeriod");
-                String b = data.getStringExtra("description");
+            if (requestCode == Const.ADD_NEW_EVENT_CODE) {
+                mMainTitle.setText(data.getStringExtra(Const.TITLE));
+                mMainDescription.setText(data.getStringExtra(Const.DESCRIPTION));
+                RepeatPeriod repeatPeriod = (RepeatPeriod) data.getSerializableExtra(Const.REPEAT_PERIOD);
+                boolean reminder = data.getBooleanExtra(Const.REMINDER, false);
+                boolean repeat = data.getBooleanExtra(Const.REPEAT, false);
+                int priorityCounter = data.getIntExtra(Const.PRIORITY, 0);
+                int a = 10;
             }
         }
     }
