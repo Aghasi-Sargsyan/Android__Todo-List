@@ -27,9 +27,6 @@ public class SecondActivity extends AppCompatActivity {
     private boolean mRepeat;
     private int mPriorityCounter;
     private RepeatPeriod repeatPeriod;
-    private Dialog mDialog;
-    private DatePicker mDatePicker;
-    private Button mCalendarSave;
 
 
     @Override
@@ -48,26 +45,9 @@ public class SecondActivity extends AppCompatActivity {
         mSecondRadioGroup = findViewById(R.id.second_radioGroup);
         mSecondUp = findViewById(R.id.second_up);
         mSecondDown = findViewById(R.id.second_down);
-        mDatePicker = findViewById(R.id.calendar);
         mSecondRadioGroup.check(R.id.second_daily);
-        mCalendarSave = findViewById(R.id.calendarSave);
-
-        mDialog = new Dialog(this);
-        mDialog.setContentView(R.layout.popup_calendar);
-        mSecondDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog.show();
-            }
-        });
 
 
-        mCalendarSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         mSecondSave.setOnClickListener(new View.OnClickListener() {
             @Override

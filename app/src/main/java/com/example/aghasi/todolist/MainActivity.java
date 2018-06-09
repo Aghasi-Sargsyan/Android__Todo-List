@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 boolean reminder = data.getBooleanExtra(Const.REMINDER, false);
                 boolean repeat = data.getBooleanExtra(Const.REPEAT, false);
                 int priorityCounter = data.getIntExtra(Const.PRIORITY, 0);
-                int a = 10;
             }
         }
     }
