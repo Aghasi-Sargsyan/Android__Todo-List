@@ -3,21 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SecondActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#319bfd"
         android:orientation="vertical">
+
         <Button
+            android:id="@+id/save_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/second_save"
-            android:text="Save"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            android:layout_marginEnd="13dp"
+            android:layout_marginTop="5dp"
+            android:minHeight="35dp"
+            android:minWidth="70dp"
+            android:text="Save" />
     </LinearLayout>
 
     <ScrollView
@@ -29,120 +33,173 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/second_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/title_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
                 android:hint="Title"
-                android:textSize="50sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="30sp"
+                android:paddingEnd="50dp"
+                android:paddingStart="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.055" />
 
             <EditText
-                android:id="@+id/second_description"
-                android:layout_width="match_parent"
+                android:id="@+id/description_second"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="serif"
+                android:paddingEnd="50dp"
+                android:paddingStart="5dp"
                 android:hint="Description"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_title" />
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/title_second"
+                app:layout_constraintTop_toBottomOf="@+id/title_second"
+                />
 
             <TextView
-                android:id="@+id/second_date"
-                android:layout_width="match_parent"
+                android:id="@+id/date_second"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-
-                android:clickable="true"
-                android:focusable="true"
-                android:hint="enter date"
-                android:textSize="30sp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="36dp"
+                android:fontFamily="serif-monospace"
+                android:text="Date"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.513"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_description" />
+                app:layout_constraintTop_toBottomOf="@+id/description_second"
+                />
 
             <CheckBox
-                android:id="@+id/second_reminder"
+                android:id="@+id/reminder_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/arapey_italic"
                 android:text="Reminder"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_date" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/title_second"
+                app:layout_constraintTop_toBottomOf="@+id/date_second"
+                app:layout_constraintVertical_bias="0.068" />
 
             <CheckBox
-                android:id="@+id/second_repeat"
+                android:id="@+id/repeat_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/arapey_italic"
                 android:text="Repeat"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_reminder" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.17"
+                app:layout_constraintStart_toEndOf="@+id/reminder_second"
+                app:layout_constraintTop_toTopOf="@+id/reminder_second"
+                />
 
             <RadioGroup
-                android:id="@+id/second_radioGroup"
+                android:id="@+id/radioGroup_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="20dp"
                 android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_repeat">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/repeat_second"
+                app:layout_constraintTop_toBottomOf="@+id/repeat_second"
+                >
 
 
                 <RadioButton
-                    android:id="@+id/second_daily"
+                    android:id="@+id/daily_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:text="Daily"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
-                    android:id="@+id/second_monthly"
+                    android:id="@+id/monthly_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:text="Monthly"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <RadioButton
-                    android:id="@+id/second_weekly"
+                    android:id="@+id/weekly_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:text="Weekly"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </RadioGroup>
 
             <TextView
-                android:id="@+id/second_priority"
-                android:layout_width="wrap_content"
+                android:id="@+id/priority_second"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="32dp"
+                android:background="@color/colorAccent"
+                android:fontFamily="serif"
+                android:paddingStart="35dp"
+                android:paddingVertical="15dp"
                 android:text="Priority 0"
-                android:textSize="30sp"
+                android:textColor="#fafafa"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/second_radioGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup_second"
+                />
 
             <ImageView
-                android:id="@+id/second_down"
+                android:id="@+id/down_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.16"
-                app:layout_constraintStart_toEndOf="@+id/second_priority"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/up_second"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/up_second"
+                app:layout_constraintTop_toBottomOf="@+id/up_second"
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
-                android:id="@+id/second_up"
+                android:id="@+id/up_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_keyboard_arrow_up_black_24dp"
-                app:layout_constraintBottom_toTopOf="@+id/second_down"
-                app:layout_constraintEnd_toEndOf="@+id/second_down"
-                app:layout_constraintTop_toTopOf="@+id/second_priority"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/priority_second"
+                app:layout_constraintHorizontal_bias="0.485"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/priority_second"
+                app:layout_constraintVertical_bias="0.120000005" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="23dp" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

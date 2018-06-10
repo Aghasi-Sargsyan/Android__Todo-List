@@ -9,9 +9,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:id="@+id/item_main"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/main_title"
+                android:id="@+id/title_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -20,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/main_description"
+                android:id="@+id/description_main"
                 android:layout_marginStart="10dp"
 
                 android:text="Description"
@@ -28,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/main_date"
+                android:id="@+id/date_main"
                 android:layout_marginStart="10dp"
 
                 android:textSize="15sp"
@@ -40,7 +42,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:id="@+id/main_add"
+        android:id="@+id/add_main"
         android:background="@drawable/ic_add_circle_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

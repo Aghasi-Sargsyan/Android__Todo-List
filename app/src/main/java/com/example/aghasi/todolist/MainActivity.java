@@ -4,33 +4,42 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView mMainTitle, mMainDescription, mMainDate;
-    ImageView mMainAdd;
+    private TextView mTitleMain, mDescriptionMain, mDateMain;
+    private ImageView mAddMain;
+    private ViewGroup mItemMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMainTitle = findViewById(R.id.main_title);
-        mMainDescription = findViewById(R.id.main_description);
-        mMainDate = findViewById(R.id.main_date);
-        mMainAdd = findViewById(R.id.main_add);
+        mTitleMain = findViewById(R.id.title_main);
+        mDescriptionMain = findViewById(R.id.description_main);
+        mDateMain = findViewById(R.id.date_main);
+        mAddMain = findViewById(R.id.add_main);
+        mItemMain = findViewById(R.id.item_main);
 
-        View.OnClickListener clickListener = new View.OnClickListener() {
+        mAddMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivityForResult(intent, Const.ADD_NEW_EVENT_CODE);
             }
-        };
+        });
 
-        mMainAdd.setOnClickListener(clickListener);
+        mItemMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivityForResult(intent, Const.EDIT_EVENT_CODE);
+            }
+        });
     }
 
     @Override
@@ -38,12 +47,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == Const.ADD_NEW_EVENT_CODE) {
-                mMainTitle.setText(data.getStringExtra(Const.TITLE));
-                mMainDescription.setText(data.getStringExtra(Const.DESCRIPTION));
+                mTitleMain.setText(data.getStringExtra(Const.TITLE));
+                mDescriptionMain.setText(data.getStringExtra(Const.DESCRIPTION));
+                mDateMain.setText(data.getStringExtra(Const.DATE));
                 RepeatPeriod repeatPeriod = (RepeatPeriod) data.getSerializableExtra(Const.REPEAT_PERIOD);
                 boolean reminder = data.getBooleanExtra(Const.REMINDER, false);
                 boolean repeat = data.getBooleanExtra(Const.REPEAT, false);
                 int priorityCounter = data.getIntExtra(Const.PRIORITY, 0);
+
             }
         }
     }
