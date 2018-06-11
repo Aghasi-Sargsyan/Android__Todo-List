@@ -1,4 +1,4 @@
-package com.example.aghasi.todolist;
+package com.example.aghasi.todolist.util;
 
 public class Const {
     public static final int ADD_NEW_EVENT_CODE = 100;

@@ -19,7 +19,6 @@
         android:fontFamily="serif"
         android:paddingEnd="50dp"
         android:paddingStart="0dp"
-        android:text="Title"
         android:textColor="@color/titleTextColor"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -33,7 +32,6 @@
         android:fontFamily="serif"
         android:paddingEnd="50dp"
         android:paddingStart="0dp"
-        android:text="description"
         android:textColor="@color/descriptTextColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +46,6 @@
         android:fontFamily="serif-monospace"
         android:paddingEnd="20dp"
         android:paddingStart="0dp"
-        android:text="12.25.4561"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/second_constraint"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,13 +59,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"
-        android:text="05:00"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/date_main"
         app:layout_constraintEnd_toEndOf="@id/second_constraint"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/date_main"
-        app:layout_constraintTop_toTopOf="@+id/date_main" />
+        app:layout_constraintTop_toTopOf="@+id/date_main"
+        app:layout_constraintVertical_bias="0.0" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

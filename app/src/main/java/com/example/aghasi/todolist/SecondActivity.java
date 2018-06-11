@@ -17,6 +17,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.aghasi.todolist.util.Const;
+import com.example.aghasi.todolist.util.RepeatPeriod;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,10 +34,8 @@ public class SecondActivity extends AppCompatActivity {
     private ImageView mUpSecond, mDownSecond;
     private CheckBox mCheckReminderSecond, mCheckRepeatSecond;
     private RadioGroup mRadioGroupSecond;
-    private String mTitle;
-    private String mDescription;
-    private boolean mReminder;
-    private boolean mRepeat;
+    private String mTitle, mDescription;
+    private boolean mReminder, mRepeat;
     private int mPriorityCounter;
     private RepeatPeriod repeatPeriod;
     private Date mTimeDate, mDateDate;
@@ -58,6 +59,15 @@ public class SecondActivity extends AppCompatActivity {
         mUpSecond = findViewById(R.id.up_second);
         mDownSecond = findViewById(R.id.down_second);
         mTimeSecond = findViewById(R.id.time_second);
+
+        mTitle = mTitleSecond.getText().toString();
+        mDescription = mDescriptionSecond.getText().toString();
+        mReminder = mCheckReminderSecond.isChecked();
+        mRepeat = mCheckRepeatSecond.isChecked();
+        mPriorityCounter = 0;
+        mTimeDate = null;
+        mDateDate = null;
+
 
         mRadioGroupSecond.check(R.id.daily_second);
 

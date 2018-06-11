@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.aghasi.todolist.util.Const;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -40,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, Const.ADD_NEW_EVENT_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mTitleTxt = "";
+        mDateTxt = "";
+        mDescriptionTxt = "";
+        mTimeTxt = "";
     }
 
     @Override
@@ -82,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         mTitleMain.setText(mTitleTxt);
         if (mDescriptionTxt.length() > 10) {
             mDescriptionMain.setText(mDescriptionTxt.substring(0, 10) + "...");
+        }else{
+            mDescriptionMain.setText(mDescriptionTxt);
         }
         if (mDate != null && mTitleTxt != null) {
             mDateMain.setText(mDateTxt + "...");
