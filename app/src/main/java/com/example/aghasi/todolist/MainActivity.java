@@ -1,41 +1,27 @@
 package com.example.aghasi.todolist;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.aghasi.todolist.util.Const;
+import com.example.aghasi.todolist.util.RepeatPeriod;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTitleMain, mDescriptionMain, mDateMain, mTimeMain;
-
-    private ImageView mAddButtonMain;
-    private String mTitleTxt, mDescriptionTxt, mDateTxt, mTimeTxt;
-    private Date mDate, mTime;
-    private ViewGroup mSecondConstraint;
+    ImageView mButtonAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mButtonAdd = findViewById(R.id.image_main_add);
 
-        mTitleMain = findViewById(R.id.title_main);
-        mDescriptionMain = findViewById(R.id.description_main);
-        mDateMain = findViewById(R.id.date_main);
-        mAddButtonMain = findViewById(R.id.add_main);
-        mTimeMain = findViewById(R.id.time_main);
-        mSecondConstraint = findViewById(R.id.second_constraint);
-
-        mAddButtonMain.setOnClickListener(new View.OnClickListener() {
+        mButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
@@ -45,63 +31,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mTitleTxt = "";
-        mDateTxt = "";
-        mDescriptionTxt = "";
-        mTimeTxt = "";
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == Const.ADD_NEW_EVENT_CODE) {
-                mTitleTxt = data.getStringExtra(Const.TITLE);
-                mDescriptionTxt = data.getStringExtra(Const.DESCRIPTION);
-                mDate = (Date) data.getSerializableExtra(Const.DATE);
-                mTime = (Date) data.getSerializableExtra(Const.TIME);
-                dateAndTimeMerger(mDate, mTime);
-                fieldsSetter();
-
-
-                /*RepeatPeriod repeatPeriod = (RepeatPeriod) data.getSerializableExtra(Const.REPEAT_PERIOD);
-                boolean reminder = data.getBooleanExtra(Const.REMINDER, false);
-                boolean repeat = data.getBooleanExtra(Const.REPEAT, false);
-                int priorityCounter = data.getIntExtra(Const.PRIORITY, 0);*/
+                String title = data.getStringExtra(Const.TITLE_KEY);
+                String description = data.getStringExtra(Const.DESCRIPTION_KEY);
+                Boolean reminder = data.getBooleanExtra(Const.REMINDER_KEY, false);
+                Boolean repeat = data.getBooleanExtra(Const.REPEAT_KEY, false);
+                RepeatPeriod repeatPeriod = (RepeatPeriod) data.getSerializableExtra(Const.REPEAT_PERIOD_KEY);
+                int priority = data.getIntExtra(Const.PRIORITY_KEY, 0);
+                Calendar calendar = (Calendar) data.getSerializableExtra(Const.CALENDAR);
             }
         }
-    }
-
-    private void dateAndTimeMerger(Date date, Date time) {
-
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat timeFormat = new SimpleDateFormat("kk:mm");
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyy");
-
-        if (date != null) {
-            mDateTxt = dateFormat.format(date);
-        }
-        if (time != null) {
-            mTimeTxt = timeFormat.format(time);
-        }
-    }
-
-    private void fieldsSetter() {
-        mTitleMain.setText(mTitleTxt);
-        if (mDescriptionTxt.length() > 10) {
-            mDescriptionMain.setText(mDescriptionTxt.substring(0, 10) + "...");
-        }else{
-            mDescriptionMain.setText(mDescriptionTxt);
-        }
-        if (mDate != null && mTitleTxt != null) {
-            mDateMain.setText(mDateTxt + "...");
-        } else {
-            mDateMain.setText(mDateTxt);
-            mTimeMain.setText(mTimeTxt);
-        }
-        mSecondConstraint.setVisibility(View.VISIBLE);
     }
 }

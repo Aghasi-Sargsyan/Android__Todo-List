@@ -14,12 +14,7 @@
     <color name="lightGreen">#B0FF00</color>
     <color name="darkYellow">#FFCF00</color>
     <color name="titleTextColor">#FF000000</color>
-    <color name="descriptTextColor">#252525</color>
+    <color name="descriptionTextColor">#252525</color>
     <color name="checkbox_color">#FF505050</color>
-
-
-
-
-
 
 </resources>

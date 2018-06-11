@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/save_second"
+            android:id="@+id/button_second_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -33,104 +33,93 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/title_second"
+                android:id="@+id/edit_second_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:background="#fafafa"
+                android:fontFamily="serif"
                 android:hint="Title"
                 android:paddingEnd="50dp"
                 android:paddingStart="0dp"
-                android:fontFamily="serif"
                 android:textColor="@color/titleTextColor"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/title_grid_line"
+                app:layout_constraintStart_toStartOf="@+id/line_second_title"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.055" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
+                android:id="@+id/edit_second_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/description_second"
+                android:layout_marginTop="15dp"
                 android:background="#fafafa"
+                android:fontFamily="serif"
                 android:hint="Description"
                 android:paddingEnd="50dp"
                 android:paddingStart="0dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="serif"
-                android:textColor="@color/descriptTextColor"
+                android:textColor="@color/descriptionTextColor"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/title_second"
-                app:layout_constraintTop_toBottomOf="@+id/title_second"/>
-
-            <TextView
-                android:id="@+id/date_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="dd/mm/yyy"
-                android:fontFamily="serif-monospace"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/remind_check_gridline"
-                app:layout_constraintTop_toBottomOf="@+id/description_second"
-                app:layout_constraintVertical_bias="0.26999998" />
-
-            <TextView
-                android:id="@+id/time_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="68dp"
-                android:fontFamily="serif-monospace"
-                android:text="hh:mm"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/date_second"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/repeat_check_gridline"
-                app:layout_constraintTop_toTopOf="@+id/date_second"
+                app:layout_constraintStart_toStartOf="@+id/edit_second_title"
+                app:layout_constraintTop_toBottomOf="@+id/edit_second_title"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <CheckBox
-                android:id="@+id/reminder_second"
+            <TextView
+                android:id="@+id/text_second_date_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="serif-monospace"
+                android:text="date/time"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/line_second_title"
+                app:layout_constraintTop_toBottomOf="@+id/edit_second_description"
+                app:layout_constraintVertical_bias="0.36" />
+
+            <CheckBox
+                android:id="@+id/checkbox_second_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/arapey_italic"
                 android:text="Reminder"
                 android:textColor="#505050"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/title_second"
-                app:layout_constraintTop_toBottomOf="@+id/date_second"
-                app:layout_constraintVertical_bias="0.068" />
+                app:layout_constraintHorizontal_bias="0.01"
+                app:layout_constraintStart_toStartOf="@+id/line_second_remind"
+                app:layout_constraintTop_toBottomOf="@+id/text_second_date_time"
+                app:layout_constraintVertical_bias="0.86" />
 
             <CheckBox
-                android:id="@+id/repeat_second"
+                android:id="@+id/checkbox_second_repeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
                 android:fontFamily="@font/arapey_italic"
                 android:text="Repeat"
                 android:textColor="#505050"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkbox_second_reminder"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.205"
-                app:layout_constraintStart_toEndOf="@+id/reminder_second"
-                app:layout_constraintTop_toTopOf="@+id/reminder_second" />
+                app:layout_constraintHorizontal_bias="0.23"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_second_reminder"
+                app:layout_constraintTop_toTopOf="@+id/checkbox_second_reminder"
+                app:layout_constraintVertical_bias="1.0" />
 
             <RadioGroup
-                android:id="@+id/radioGroup_second"
+                android:id="@+id/radioGroup_second_period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -138,12 +127,12 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/repeat_second"
-                app:layout_constraintTop_toBottomOf="@+id/repeat_second">
+                app:layout_constraintStart_toStartOf="@+id/checkbox_second_repeat"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_second_repeat">
 
 
                 <RadioButton
-                    android:id="@+id/daily_second"
+                    android:id="@+id/radioButton_second_daily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="casual"
@@ -151,7 +140,7 @@
                     android:textSize="15sp" />
 
                 <RadioButton
-                    android:id="@+id/monthly_second"
+                    android:id="@+id/radioButton_second_monthly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="casual"
@@ -159,7 +148,7 @@
                     android:textSize="15sp" />
 
                 <RadioButton
-                    android:id="@+id/weekly_second"
+                    android:id="@+id/radioButton_second_weekly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="casual"
@@ -168,10 +157,10 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/priority_second"
+                android:id="@+id/text_second_priority"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 android:background="@color/colorAccent"
                 android:fontFamily="serif"
                 android:paddingStart="35dp"
@@ -182,52 +171,68 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup_second" />
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup_second_period" />
 
             <ImageView
-                android:id="@+id/down_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@android:drawable/arrow_down_float"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/up_second"
-                app:layout_constraintTop_toTopOf="@+id/priority_second"
-                app:layout_constraintVertical_bias="0.8" />
-
-            <ImageView
-                android:id="@+id/up_second"
+                android:id="@+id/image_second_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@android:drawable/arrow_up_float"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/priority_second"
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="@+id/text_second_priority"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/repeat_second"
-                app:layout_constraintTop_toTopOf="@+id/priority_second"
-                app:layout_constraintVertical_bias="0.20" />
+                app:layout_constraintStart_toStartOf="@+id/checkbox_second_repeat"
+                app:layout_constraintTop_toTopOf="@+id/text_second_priority"
+                app:layout_constraintVertical_bias="0.100000024" />
 
+            <ImageView
+                android:id="@+id/image_second_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/arrow_down_float"
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/image_second_up"
+                app:layout_constraintTop_toBottomOf="@+id/image_second_up"
+                app:layout_constraintVertical_bias="0.89" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_second_priority" />
             <android.support.constraint.Guideline
-                android:id="@+id/title_grid_line"
+                android:id="@+id/line_second_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="25dp" />
 
             <android.support.constraint.Guideline
-                android:id="@+id/remind_check_gridline"
+                android:id="@+id/line_second_remind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="30dp" />
+                app:layout_constraintGuide_begin="16dp" />
 
             <android.support.constraint.Guideline
-                android:id="@+id/repeat_check_gridline"
+                android:id="@+id/line_second_repeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="175dp" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="341dp" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
