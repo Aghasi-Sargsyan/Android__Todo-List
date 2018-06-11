@@ -6,6 +6,7 @@ public class Const {
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
     public static final String DATE = "date";
+    public static final String TIME = "time";
     public static final String REMINDER = "reminder";
     public static final String REPEAT = "repeat";
     public static final String REPEAT_PERIOD = "repeat period";

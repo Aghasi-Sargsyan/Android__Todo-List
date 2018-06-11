@@ -6,13 +6,16 @@
     <color name="blue">#00B0FF</color>
     <color name="lightBlue">#80D8FF</color>
     <color name="yellow">#FFE800</color>
-    <color name="green">#00FF1C</color>
+    <color name="green">#8bc34a</color>
     <color name="purple">#8200FF</color>
     <color name="red">#FF004A</color>
     <color name="orange">#FF4F00</color>
     <color name="pink">#FF00B0</color>
     <color name="lightGreen">#B0FF00</color>
     <color name="darkYellow">#FFCF00</color>
+    <color name="titleTextColor">#FF000000</color>
+    <color name="descriptTextColor">#252525</color>
+    <color name="checkbox_color">#FF505050</color>
 
 
 
