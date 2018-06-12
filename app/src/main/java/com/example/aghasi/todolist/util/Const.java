@@ -11,5 +11,8 @@ public class Const {
     public static final String REPEAT_PERIOD_KEY = "repeat period";
     public static final String PRIORITY_KEY = "priority counter";
     public static final String PRIORITY_TXT = "Priority";
-    public static final String DATE_TIME_FORMAT = "dd/MM/yyy  kk:mm";
+    public static final String SECOND_DATE_FORMAT = "dd/MM/yyy  kk:mm";
+    public static final String ITEM_DATE_FORMAT = "dd/MMM/yyy  kk:mm";
+    public static final String TODO_ITEM = "todo item";
+
 }

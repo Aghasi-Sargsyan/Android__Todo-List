@@ -3,22 +3,36 @@ package com.example.aghasi.todolist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.aghasi.todolist.items.TodoItem;
+import com.example.aghasi.todolist.recyclerView.TodoItemRecyclerAdapter;
 import com.example.aghasi.todolist.util.Const;
-import com.example.aghasi.todolist.util.RepeatPeriod;
 
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView mButtonAdd;
+    private List<TodoItem> mTodoItemList;
+    private RecyclerView mRecyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mTodoItemList = new ArrayList<>();
+        mRecyclerView = findViewById(R.id.recycler_main);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
+
         mButtonAdd = findViewById(R.id.image_main_add);
 
         mButtonAdd.setOnClickListener(new View.OnClickListener() {
@@ -35,13 +49,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == Const.ADD_NEW_EVENT_CODE) {
-                String title = data.getStringExtra(Const.TITLE_KEY);
-                String description = data.getStringExtra(Const.DESCRIPTION_KEY);
-                Boolean reminder = data.getBooleanExtra(Const.REMINDER_KEY, false);
-                Boolean repeat = data.getBooleanExtra(Const.REPEAT_KEY, false);
-                RepeatPeriod repeatPeriod = (RepeatPeriod) data.getSerializableExtra(Const.REPEAT_PERIOD_KEY);
-                int priority = data.getIntExtra(Const.PRIORITY_KEY, 0);
-                Calendar calendar = (Calendar) data.getSerializableExtra(Const.CALENDAR);
+                TodoItem item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM);
+                mTodoItemList.add(item);
+
+                mRecyclerView.setAdapter(new TodoItemRecyclerAdapter(mTodoItemList));
             }
         }
     }

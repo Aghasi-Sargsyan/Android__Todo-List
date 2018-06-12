@@ -6,64 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/second_constraint"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background_normal"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/text_main_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:paddingEnd="50dp"
-            android:paddingStart="0dp"
-            android:textColor="@color/titleTextColor"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@id/second_constraint" />
-
-        <TextView
-            android:id="@+id/text_main_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:paddingEnd="50dp"
-            android:paddingStart="0dp"
-            android:textColor="@color/descriptionTextColor"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/text_main_title"
-            app:layout_constraintVertical_bias="0.3" />
-
-        <TextView
-            android:id="@+id/text_main_date"
-            android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:fontFamily="serif-monospace"
-            android:paddingEnd="20dp"
-            android:paddingStart="0dp"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@id/second_constraint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/text_main_description"
-            app:layout_constraintVertical_bias="0.42000002" />
-
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="25dp" />
-    </android.support.constraint.ConstraintLayout>
-
+        android:layout_height="match_parent"/>
 
     <ImageView
         android:id="@+id/image_main_add"

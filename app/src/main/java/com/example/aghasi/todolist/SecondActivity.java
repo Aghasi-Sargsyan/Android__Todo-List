@@ -17,11 +17,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.aghasi.todolist.items.TodoItem;
 import com.example.aghasi.todolist.util.Const;
 import com.example.aghasi.todolist.util.RepeatPeriod;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static android.widget.Toast.makeText;
 
@@ -34,7 +36,7 @@ public class SecondActivity extends AppCompatActivity {
     private ImageView mImageUp, mImageDown;
     private RepeatPeriod mRepeatPeriod;
     private int mPriorityCounter;
-    private Calendar mCalendar;
+    private Date mDate;
 
 
     @Override
@@ -44,33 +46,21 @@ public class SecondActivity extends AppCompatActivity {
 
         mPriorityCounter = 0;
         mRepeatPeriod = null;
+        mDate = null;
 
-        mButtonSave = findViewById(R.id.button_second_save);
-        mEditTitle = findViewById(R.id.edit_second_title);
-        mEditDescription = findViewById(R.id.edit_second_description);
-        mTextDateTime = findViewById(R.id.text_second_date_time);
-        mTextPriority = findViewById(R.id.text_second_priority);
-        mCheckBoxReminder = findViewById(R.id.checkbox_second_reminder);
-        mCheckBoxRepeat = findViewById(R.id.checkbox_second_repeat);
-        mRadioGroupPeriod = findViewById(R.id.radioGroup_second_period);
-        mImageUp = findViewById(R.id.image_second_up);
-        mImageDown = findViewById(R.id.image_second_down);
+        idInitialization();
 
         mButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (mEditTitle.getText() != null && !mEditTitle.getText().toString().isEmpty()) {
-                Intent intent = new Intent();
-                repeatPeriodChecker();
-                intent.putExtra(Const.REPEAT_PERIOD_KEY, mRepeatPeriod);
-                intent.putExtra(Const.TITLE_KEY, mEditTitle.getText().toString());
-                intent.putExtra(Const.DESCRIPTION_KEY, mEditDescription.getText().toString());
-                intent.putExtra(Const.REMINDER_KEY, mCheckBoxReminder.isChecked());
-                intent.putExtra(Const.REPEAT_KEY, mCheckBoxRepeat.isChecked());
-                intent.putExtra(Const.PRIORITY_KEY, mPriorityCounter);
-                intent.putExtra(Const.CALENDAR, mCalendar);
-                setResult(RESULT_OK, intent);
-                finish();
+
+                    Intent intent = new Intent();
+                    intent.putExtra(Const.TODO_ITEM, itemCreator());
+                    setResult(RESULT_OK, intent);
+                    finish();
+
                 } else {
                     Toast toast = makeText(SecondActivity.this, "Title is empty", Toast.LENGTH_SHORT);
                     toast.show();
@@ -132,6 +122,18 @@ public class SecondActivity extends AppCompatActivity {
         mImageDown.setOnClickListener(upDownButtonsListener);
     }
 
+    private void idInitialization() {
+        mButtonSave = findViewById(R.id.button_second_save);
+        mEditTitle = findViewById(R.id.edit_second_title);
+        mEditDescription = findViewById(R.id.edit_second_description);
+        mTextDateTime = findViewById(R.id.text_second_date);
+        mTextPriority = findViewById(R.id.text_second_priority);
+        mCheckBoxReminder = findViewById(R.id.checkbox_second_reminder);
+        mCheckBoxRepeat = findViewById(R.id.checkbox_second_repeat);
+        mRadioGroupPeriod = findViewById(R.id.radioGroup_second_period);
+        mImageUp = findViewById(R.id.image_second_up);
+        mImageDown = findViewById(R.id.image_second_down);
+    }
 
     private void repeatPeriodChecker() {
         switch (mRadioGroupPeriod.getCheckedRadioButtonId()) {
@@ -147,25 +149,32 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
+    private TodoItem itemCreator() {
+        String title = mEditTitle.getText().toString();
+        String description = mEditDescription.getText().toString();
+        Date date = mDate;
+        return new TodoItem(title, description, date);
+    }
+
     private void chooseDateAndTime() {
-        final Calendar currentDate = Calendar.getInstance();
-        mCalendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
         new DatePickerDialog(this, R.style.SpinnerDate, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                mCalendar.set(year, monthOfYear, dayOfMonth);
+                calendar.set(year, monthOfYear, dayOfMonth);
                 new TimePickerDialog(SecondActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        mCalendar.set(Calendar.MINUTE, minute);
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
 
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Const.DATE_TIME_FORMAT);
-                        mTextDateTime.setText(simpleDateFormat.format(mCalendar.getTime()));
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Const.SECOND_DATE_FORMAT);
+                        mTextDateTime.setText(simpleDateFormat.format(calendar.getTime()));
                     }
-                }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), true).show();
+                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
             }
-        }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)).show();
+        mDate = calendar.getTime();
     }
 }
 

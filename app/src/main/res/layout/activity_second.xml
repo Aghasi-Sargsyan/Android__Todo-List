@@ -72,7 +72,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/text_second_date_time"
+                android:id="@+id/text_second_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -100,7 +100,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.01"
                 app:layout_constraintStart_toStartOf="@+id/line_second_remind"
-                app:layout_constraintTop_toBottomOf="@+id/text_second_date_time"
+                app:layout_constraintTop_toBottomOf="@+id/text_second_date"
                 app:layout_constraintVertical_bias="0.86" />
 
             <CheckBox
