@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.aghasi.todolist.R;
 import com.example.aghasi.todolist.SecondActivity;
@@ -25,7 +26,6 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<TodoItemViewHo
         if (todoItemList == null) {
             this.todoItemList = new ArrayList<>();
         }
-
         this.todoItemList = todoItemList;
     }
 
@@ -80,6 +80,9 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<TodoItemViewHo
     void removeItem(int position) {
         todoItemList.remove(position);
         notifyDataSetChanged();
+        if (todoItemList.size() < 2) {
+
+        }
     }
 
 }

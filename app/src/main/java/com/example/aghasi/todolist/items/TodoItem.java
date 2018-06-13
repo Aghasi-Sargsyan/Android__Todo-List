@@ -1,41 +1,43 @@
 package com.example.aghasi.todolist.items;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class TodoItem implements Serializable {
 
-    private String title;
-    private String description;
-    private Date date;
+    private String mTitle;
+    private String mDescription;
+    private Date mDate;
 
     public TodoItem(String title, String description, Date date) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
+        this.mTitle = title;
+        this.mDescription = description;
+        this.mDate = date;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
     public Date getDate() {
-        return date;
+        return mDate;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.mTitle = title;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.mDescription = description;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.mDate = date;
     }
 }

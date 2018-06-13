@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".SecondActivity">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="vertical">
@@ -16,13 +16,18 @@
             android:id="@+id/button_second_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="13dp"
             android:layout_marginTop="5dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:fontFamily="sans-serif-smallcaps"
             android:minHeight="35dp"
             android:minWidth="70dp"
-            android:text="Save" />
-    </LinearLayout>
+            android:text="Save"
+            android:textColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -161,10 +166,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:background="@color/colorAccent"
+                android:background="#3e3e3e"
                 android:fontFamily="serif"
                 android:paddingStart="35dp"
-                android:paddingVertical="15dp"
+                android:paddingEnd="0dp"
+                android:paddingVertical="30dp"
                 android:text="Priority 0"
                 android:textColor="#fafafa"
                 android:textSize="20sp"
@@ -177,20 +183,21 @@
                 android:id="@+id/image_second_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
-                android:background="@android:drawable/arrow_up_float"
+                android:background="@drawable/ic_keyboard_arrow_up_black_24dp"
                 app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="@+id/text_second_priority"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.17"
                 app:layout_constraintStart_toStartOf="@+id/checkbox_second_repeat"
                 app:layout_constraintTop_toTopOf="@+id/text_second_priority"
-                app:layout_constraintVertical_bias="0.100000024" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/image_second_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/arrow_down_float"
+                android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
                 app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

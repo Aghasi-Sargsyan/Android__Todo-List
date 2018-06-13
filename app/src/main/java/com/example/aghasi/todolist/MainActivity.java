@@ -6,19 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.aghasi.todolist.items.TodoItem;
+import com.example.aghasi.todolist.items.TodoItemDateComparator;
 import com.example.aghasi.todolist.recyclerView.TodoItemRecyclerAdapter;
 import com.example.aghasi.todolist.util.Const;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView mButtonAdd;
+    ImageView mImageAdd;
+    Button mButtonSort;
     private List<TodoItem> mTodoItemList;
     private TodoItemRecyclerAdapter mAdapter;
 
@@ -29,22 +32,33 @@ public class MainActivity extends AppCompatActivity {
 
         mTodoItemList = new ArrayList<>();
 
-        RecyclerView mRecyclerView = findViewById(R.id.recycler_main);
+        idInitialization();
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false));
-        mAdapter = new TodoItemRecyclerAdapter(mTodoItemList);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerViewCreator();
 
-        mButtonAdd = findViewById(R.id.image_main_add);
-
-        mButtonAdd.setOnClickListener(new View.OnClickListener() {
+        mImageAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivityForResult(intent, Const.ADD_NEW_EVENT_CODE);
             }
         });
+
+        mButtonSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Collections.sort(mTodoItemList,new TodoItemDateComparator());
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mTodoItemList.size() >= 2) {
+            mButtonSort.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -62,5 +76,18 @@ public class MainActivity extends AppCompatActivity {
             }
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void idInitialization() {
+        mImageAdd = findViewById(R.id.image_main_add);
+        mButtonSort = findViewById(R.id.button_main_sort);
+    }
+
+    private void recyclerViewCreator() {
+        RecyclerView mRecyclerView = findViewById(R.id.recycler_main);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
+        mAdapter = new TodoItemRecyclerAdapter(mTodoItemList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
