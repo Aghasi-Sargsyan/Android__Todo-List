@@ -1,5 +1,8 @@
 package com.example.aghasi.todolist.recyclerView;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aghasi.todolist.R;
+import com.example.aghasi.todolist.SecondActivity;
 import com.example.aghasi.todolist.items.TodoItem;
 import com.example.aghasi.todolist.util.Const;
 
@@ -29,11 +33,21 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<TodoItemViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TodoItemViewHolder holder, int position) {
-        TodoItem todoItem = todoItemList.get(position);
+    public void onBindViewHolder(@NonNull final TodoItemViewHolder holder, final int position) {
+        final TodoItem todoItem = todoItemList.get(position);
         holder.getTitle().setText(todoItem.getTitle());
         holder.getDescription().setText(todoItem.getDescription());
         holder.getDate().setText(dateEditor(todoItem));
+        holder.getItemLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context,SecondActivity.class);
+                intent.putExtra(Const.TODO_ITEM_KEY, todoItem);
+                intent.putExtra("position", position);
+                ((Activity) context).startActivityForResult(intent,Const.EDIT_EVENT_CODE);
+            }
+        });
     }
 
     @Override
@@ -45,11 +59,10 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<TodoItemViewHo
         if (todoItem.getDate() != null) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(Const.ITEM_DATE_FORMAT);
             String date = dateFormat.format(todoItem.getDate());
-            if (date.length() > 10) {
-                date = date.substring(0, 10);
-            }
+            date = date.substring(0, 12) + "...";
             return date;
         }
         return "";
     }
+
 }

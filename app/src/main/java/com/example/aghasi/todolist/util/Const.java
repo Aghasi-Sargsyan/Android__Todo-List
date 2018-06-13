@@ -10,9 +10,13 @@ public class Const {
     public static final String REPEAT_KEY = "repeat";
     public static final String REPEAT_PERIOD_KEY = "repeat period";
     public static final String PRIORITY_KEY = "priority counter";
-    public static final String PRIORITY_TXT = "Priority";
+    public static final String PRIORITY_TEXT_NAME = "Priority";
     public static final String SECOND_DATE_FORMAT = "dd/MM/yyy  kk:mm";
     public static final String ITEM_DATE_FORMAT = "dd/MMM/yyy  kk:mm";
-    public static final String TODO_ITEM = "todo item";
+    public static final String TODO_ITEM_KEY = "todo item";
+    public static final String SAVE_BUTTON_NAME = "SAVE";
+    public static final String EDIT_BUTTON_NAME = "EDIT";
+    public static final String ITEM_POSITION_KEY = "position";
+
 
 }

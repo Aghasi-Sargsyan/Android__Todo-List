@@ -35,7 +35,8 @@ public class SecondActivity extends AppCompatActivity {
     private RadioGroup mRadioGroupPeriod;
     private ImageView mImageUp, mImageDown;
     private RepeatPeriod mRepeatPeriod;
-    private int mPriorityCounter;
+    private int mPriorityCounter, mItemPosition;
+    private boolean mIsEditButton;
     private Date mDate;
 
 
@@ -47,23 +48,33 @@ public class SecondActivity extends AppCompatActivity {
         mPriorityCounter = 0;
         mRepeatPeriod = null;
         mDate = null;
+        mIsEditButton = false;
 
         idInitialization();
+
+        itemEditor();
 
         mButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (mEditTitle.getText() != null && !mEditTitle.getText().toString().isEmpty()) {
-
-                    Intent intent = new Intent();
-                    intent.putExtra(Const.TODO_ITEM, itemCreator());
-                    setResult(RESULT_OK, intent);
-                    finish();
-
+                if (mIsEditButton) {
+                    mButtonSave.setText(Const.SAVE_BUTTON_NAME);
+                    mIsEditButton = false;
+                    fieldsEnabler();
                 } else {
-                    Toast toast = makeText(SecondActivity.this, "Title is empty", Toast.LENGTH_SHORT);
-                    toast.show();
+                    if (mEditTitle.getText() != null && !mEditTitle.getText().toString().isEmpty()) {
+
+                        Intent intent = new Intent();
+                        intent.putExtra(Const.TODO_ITEM_KEY, itemCreator());
+                        intent.putExtra(Const.ITEM_POSITION_KEY, mItemPosition);
+                        setResult(RESULT_OK, intent);
+                        finish();
+
+                    } else {
+                        Toast toast = makeText(SecondActivity.this, "Title is empty", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
             }
         });
@@ -114,12 +125,13 @@ public class SecondActivity extends AppCompatActivity {
                         }
                         break;
                 }
-                mTextPriority.setText(Const.PRIORITY_TXT + " " + mPriorityCounter);
+                mTextPriority.setText(Const.PRIORITY_TEXT_NAME + " " + mPriorityCounter);
             }
         };
 
         mImageUp.setOnClickListener(upDownButtonsListener);
         mImageDown.setOnClickListener(upDownButtonsListener);
+
     }
 
     private void idInitialization() {
@@ -168,13 +180,55 @@ public class SecondActivity extends AppCompatActivity {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
 
+                        mDate = calendar.getTime();
+
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Const.SECOND_DATE_FORMAT);
                         mTextDateTime.setText(simpleDateFormat.format(calendar.getTime()));
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)).show();
-        mDate = calendar.getTime();
+
+    }
+
+    private void itemEditor() {
+        Intent intent = getIntent();
+        TodoItem item = (TodoItem) intent.getSerializableExtra(Const.TODO_ITEM_KEY);
+        if (item != null) {
+            mIsEditButton = true;
+            mButtonSave.setText(Const.EDIT_BUTTON_NAME);
+            fieldDisabler();
+            mItemPosition = intent.getIntExtra(Const.ITEM_POSITION_KEY, 0);
+            mEditTitle.setText(item.getTitle());
+            mEditDescription.setText(item.getDescription());
+            if (item.getDate() != null) {
+                mDate = item.getDate();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Const.SECOND_DATE_FORMAT);
+                mTextDateTime.setText(simpleDateFormat.format(mDate));
+            }
+        }
+    }
+
+    private void fieldDisabler() {
+        mEditTitle.setFocusable(false);
+        mEditDescription.setFocusable(false);
+        mCheckBoxReminder.setEnabled(false);
+        mCheckBoxRepeat.setEnabled(false);
+        mTextDateTime.setEnabled(false);
+        mImageUp.setEnabled(false);
+        mImageDown.setEnabled(false);
+    }
+
+    private void fieldsEnabler() {
+        mEditTitle.setFocusable(true);
+        mEditTitle.setFocusableInTouchMode(true);
+        mEditDescription.setFocusable(true);
+        mEditDescription.setFocusableInTouchMode(true);
+        mCheckBoxReminder.setEnabled(true);
+        mCheckBoxRepeat.setEnabled(true);
+        mTextDateTime.setEnabled(true);
+        mImageUp.setEnabled(true);
+        mImageDown.setEnabled(true);
     }
 }
 

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/second_constraint"
+    android:id="@+id/constraint_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:drawable/dialog_holo_light_frame">
@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/text_item_title"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@id/second_constraint"
+        app:layout_constraintTop_toTopOf="@id/constraint_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/text_item_date"
-        app:layout_constraintBottom_toBottomOf="@id/second_constraint"
+        app:layout_constraintBottom_toBottomOf="@id/constraint_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"

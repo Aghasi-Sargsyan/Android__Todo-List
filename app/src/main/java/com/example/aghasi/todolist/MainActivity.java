@@ -49,8 +49,15 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == Const.ADD_NEW_EVENT_CODE) {
-                TodoItem item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM);
+                TodoItem item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
                 mTodoItemList.add(item);
+
+                mRecyclerView.setAdapter(new TodoItemRecyclerAdapter(mTodoItemList));
+            }
+            if (requestCode == Const.EDIT_EVENT_CODE) {
+                int position = data.getIntExtra(Const.ITEM_POSITION_KEY, 0);
+                TodoItem item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
+                mTodoItemList.set(position,item);
 
                 mRecyclerView.setAdapter(new TodoItemRecyclerAdapter(mTodoItemList));
             }
