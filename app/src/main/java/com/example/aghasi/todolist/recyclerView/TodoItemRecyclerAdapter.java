@@ -19,10 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<TodoItemViewHolder> {
-    private List<TodoItem> todoItemList = new ArrayList<>();
+    private List<TodoItem> todoItemList;
 
     public TodoItemRecyclerAdapter(List<TodoItem> todoItemList) {
-        this.todoItemList.addAll(todoItemList);
+        if (todoItemList == null) {
+            this.todoItemList = new ArrayList<>();
+        }
+
+        this.todoItemList = todoItemList;
     }
 
     @NonNull
@@ -42,10 +46,18 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<TodoItemViewHo
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                Intent intent = new Intent(context,SecondActivity.class);
+                Intent intent = new Intent(context, SecondActivity.class);
                 intent.putExtra(Const.TODO_ITEM_KEY, todoItem);
-                intent.putExtra("position", position);
-                ((Activity) context).startActivityForResult(intent,Const.EDIT_EVENT_CODE);
+                intent.putExtra(Const.ITEM_POSITION_KEY, position);
+                ((Activity) context).startActivityForResult(intent, Const.EDIT_EVENT_CODE);
+            }
+        });
+
+        holder.getRemoveButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeItem(position);
+
             }
         });
     }
@@ -63,6 +75,11 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<TodoItemViewHo
             return date;
         }
         return "";
+    }
+
+    void removeItem(int position) {
+        todoItemList.remove(position);
+        notifyDataSetChanged();
     }
 
 }

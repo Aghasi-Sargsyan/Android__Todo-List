@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ImageView;
 
 import com.example.aghasi.todolist.items.TodoItem;
@@ -19,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView mButtonAdd;
     private List<TodoItem> mTodoItemList;
-    private RecyclerView mRecyclerView;
-
+    private TodoItemRecyclerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTodoItemList = new ArrayList<>();
-        mRecyclerView = findViewById(R.id.recycler_main);
+
+        RecyclerView mRecyclerView = findViewById(R.id.recycler_main);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false));
+        mAdapter = new TodoItemRecyclerAdapter(mTodoItemList);
+        mRecyclerView.setAdapter(mAdapter);
 
         mButtonAdd = findViewById(R.id.image_main_add);
 
@@ -51,16 +54,13 @@ public class MainActivity extends AppCompatActivity {
             if (requestCode == Const.ADD_NEW_EVENT_CODE) {
                 TodoItem item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
                 mTodoItemList.add(item);
-
-                mRecyclerView.setAdapter(new TodoItemRecyclerAdapter(mTodoItemList));
             }
             if (requestCode == Const.EDIT_EVENT_CODE) {
                 int position = data.getIntExtra(Const.ITEM_POSITION_KEY, 0);
                 TodoItem item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
                 mTodoItemList.set(position,item);
-
-                mRecyclerView.setAdapter(new TodoItemRecyclerAdapter(mTodoItemList));
             }
+            mAdapter.notifyDataSetChanged();
         }
     }
 }

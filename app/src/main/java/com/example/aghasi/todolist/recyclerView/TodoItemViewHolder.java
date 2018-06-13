@@ -3,16 +3,18 @@ package com.example.aghasi.todolist.recyclerView;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.aghasi.todolist.R;
 
-public class TodoItemViewHolder extends RecyclerView.ViewHolder{
+public class TodoItemViewHolder extends RecyclerView.ViewHolder {
 
     private TextView mTitle;
     private TextView mDescription;
     private TextView mDate;
     private ConstraintLayout mItemLayout;
+    private ImageView mRemoveButton;
 
     public TodoItemViewHolder(View itemView) {
         super(itemView);
@@ -20,6 +22,7 @@ public class TodoItemViewHolder extends RecyclerView.ViewHolder{
         mDescription = itemView.findViewById(R.id.text_item_description);
         mDate = itemView.findViewById(R.id.text_item_date);
         mItemLayout = itemView.findViewById(R.id.constraint_item);
+        mRemoveButton = itemView.findViewById(R.id.image_remove_item);
     }
 
     public TextView getTitle() {
@@ -50,7 +53,7 @@ public class TodoItemViewHolder extends RecyclerView.ViewHolder{
         return mItemLayout;
     }
 
-    public void setItemLayout(ConstraintLayout mItemLayout) {
-        this.mItemLayout = mItemLayout;
+    public ImageView getRemoveButton() {
+        return mRemoveButton;
     }
 }
