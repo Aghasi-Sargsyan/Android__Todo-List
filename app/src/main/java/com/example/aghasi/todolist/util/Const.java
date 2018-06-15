@@ -17,6 +17,9 @@ public class Const {
     public static final String SAVE_BUTTON_NAME = "SAVE";
     public static final String EDIT_BUTTON_NAME = "EDIT";
     public static final String ITEM_POSITION_KEY = "position";
+    public static final int TODO_ITEM_TYPE = 0;
+    public static final int TODO_DATE_TYPE = 1;
+
 
 
 }

@@ -1,6 +1,5 @@
 package com.example.aghasi.todolist.recyclerView;
 
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,50 +9,44 @@ import com.example.aghasi.todolist.R;
 
 public class TodoItemViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView mTitle;
-    private TextView mDescription;
-    private TextView mDate;
-    private ConstraintLayout mItemLayout;
-    private ImageView mRemoveButton;
+    private TextView mTextTitle;
+    private TextView mTextDescription;
+    private TextView mTextDate;
+    private ImageView mImageRemove;
 
     public TodoItemViewHolder(View itemView) {
         super(itemView);
-        mTitle = itemView.findViewById(R.id.text_item_title);
-        mDescription = itemView.findViewById(R.id.text_item_description);
-        mDate = itemView.findViewById(R.id.text_item_date);
-        mItemLayout = itemView.findViewById(R.id.constraint_item);
-        mRemoveButton = itemView.findViewById(R.id.image_remove_item);
+        mTextTitle = itemView.findViewById(R.id.text_item_title);
+        mTextDescription = itemView.findViewById(R.id.text_item_description);
+        mTextDate = itemView.findViewById(R.id.text_item_date);
+        mImageRemove = itemView.findViewById(R.id.image_remove_item);
     }
 
-    public TextView getTitle() {
-        return mTitle;
+    public TextView getTextTitle() {
+        return mTextTitle;
     }
 
-    public void setTitle(TextView mTitle) {
-        this.mTitle = mTitle;
+    public void setTextTitle(TextView mTitle) {
+        this.mTextTitle = mTitle;
     }
 
-    public TextView getDescription() {
-        return mDescription;
+    public TextView getTextDescription() {
+        return mTextDescription;
     }
 
-    public void setDescription(TextView mDescription) {
-        this.mDescription = mDescription;
+    public void setTextDescription(TextView mDescription) {
+        this.mTextDescription = mDescription;
     }
 
-    public TextView getDate() {
-        return mDate;
+    public TextView getTextDate() {
+        return mTextDate;
     }
 
-    public void setDate(TextView mDate) {
-        this.mDate = mDate;
+    public void setTextDate(TextView mDate) {
+        this.mTextDate = mDate;
     }
 
-    public ConstraintLayout getItemLayout() {
-        return mItemLayout;
-    }
-
-    public ImageView getRemoveButton() {
-        return mRemoveButton;
+    public ImageView getImageRemove() {
+        return mImageRemove;
     }
 }
