@@ -12,13 +12,11 @@ import com.example.aghasi.todolist.items.TodoItem;
 import com.example.aghasi.todolist.recyclerView.TodoItemRecyclerAdapter;
 import com.example.aghasi.todolist.util.Const;
 
-import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
 
-    ImageView mImageAdd;
+    private ImageView mImageAdd;
     private TodoItemRecyclerAdapter mAdapter;
-
+    private TodoItem mTodoItem;
     private TodoItemRecyclerAdapter.OnItemSelectedListener mOnItemSelectedListener = new TodoItemRecyclerAdapter.OnItemSelectedListener() {
         @Override
         public void onItemClicked(TodoItem item, int position) {
@@ -61,24 +59,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            TodoItem item = new TodoItem("asda","asd",new Date());
             if (requestCode == Const.ADD_NEW_EVENT_CODE) {
-                item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
-                mAdapter.getTodoItemList().add(item);
+                mTodoItem = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
+                mAdapter.getTodoItemList().add(mTodoItem);
             }
             if (requestCode == Const.EDIT_EVENT_CODE) {
                 int position = data.getIntExtra(Const.ITEM_POSITION_KEY, 0);
-                item = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
-                mAdapter.getTodoItemList().set(position, item);
+                mTodoItem = (TodoItem) data.getSerializableExtra(Const.TODO_ITEM_KEY);
+                mAdapter.getTodoItemList().set(position, mTodoItem);
+
             }
+            mAdapter.setItemDate(mTodoItem.getDate());
             mAdapter.notifyDataSetChanged();
-
-            if (item.getDate() != null) {
-                if (mAdapter.getItemDate() != item.getDate())
-                mAdapter.setItemDate(item.getDate());
-            }
         }
-
     }
 
     private void idInitialization() {

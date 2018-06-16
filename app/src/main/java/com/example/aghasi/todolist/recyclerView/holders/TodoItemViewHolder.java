@@ -1,4 +1,4 @@
-package com.example.aghasi.todolist.recyclerView;
+package com.example.aghasi.todolist.recyclerView.holders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,24 +26,12 @@ public class TodoItemViewHolder extends RecyclerView.ViewHolder {
         return mTextTitle;
     }
 
-    public void setTextTitle(TextView mTitle) {
-        this.mTextTitle = mTitle;
-    }
-
     public TextView getTextDescription() {
         return mTextDescription;
     }
 
-    public void setTextDescription(TextView mDescription) {
-        this.mTextDescription = mDescription;
-    }
-
     public TextView getTextDate() {
         return mTextDate;
-    }
-
-    public void setTextDate(TextView mDate) {
-        this.mTextDate = mDate;
     }
 
     public ImageView getImageRemove() {

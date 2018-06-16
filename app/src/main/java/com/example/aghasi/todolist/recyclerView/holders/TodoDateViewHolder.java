@@ -1,4 +1,4 @@
-package com.example.aghasi.todolist.recyclerView;
+package com.example.aghasi.todolist.recyclerView.holders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,11 +6,11 @@ import android.widget.TextView;
 
 import com.example.aghasi.todolist.R;
 
-public class DateViewHolder extends RecyclerView.ViewHolder {
+public class TodoDateViewHolder extends RecyclerView.ViewHolder {
 
     private TextView mTextDate;
 
-    public DateViewHolder(View itemView) {
+    public TodoDateViewHolder(View itemView) {
         super(itemView);
         mTextDate = itemView.findViewById(R.id.text_res_date);
     }
@@ -19,7 +19,4 @@ public class DateViewHolder extends RecyclerView.ViewHolder {
         return mTextDate;
     }
 
-    public void setTextDate(TextView textDate) {
-        mTextDate = textDate;
-    }
 }

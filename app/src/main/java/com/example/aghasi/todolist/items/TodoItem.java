@@ -1,15 +1,16 @@
 package com.example.aghasi.todolist.items;
 
-import android.support.v7.widget.RecyclerView;
-
 import java.io.Serializable;
 import java.util.Date;
 
-public class TodoItem implements Serializable{
+public class TodoItem implements Serializable {
 
     private String mTitle;
     private String mDescription;
     private Date mDate;
+
+    public TodoItem(){
+    }
 
     public TodoItem(String title, String description, Date date) {
         this.mTitle = title;

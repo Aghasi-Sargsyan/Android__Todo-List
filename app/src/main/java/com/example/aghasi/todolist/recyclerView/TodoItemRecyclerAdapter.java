@@ -8,16 +8,20 @@ import android.view.ViewGroup;
 
 import com.example.aghasi.todolist.R;
 import com.example.aghasi.todolist.items.TodoItem;
+import com.example.aghasi.todolist.recyclerView.holders.TodoDateViewHolder;
+import com.example.aghasi.todolist.recyclerView.holders.TodoItemViewHolder;
 import com.example.aghasi.todolist.util.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<TodoItem> todoItemList = new ArrayList<>();
 
     private OnItemSelectedListener mOnItemSelectedListener;
+    private Date mItemDate;
 
 
     @NonNull
@@ -30,7 +34,7 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             }
             case Const.TODO_DATE_TYPE: {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_todo_date, parent, false);
-                return new TodoItemViewHolder(view);
+                return new TodoDateViewHolder(view);
             }
         }
         throw new IllegalStateException("Unknown view type");
@@ -42,16 +46,16 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         switch (getItemViewType(position)) {
             case Const.TODO_ITEM_TYPE:
                 TodoItemViewHolder itemViewHolder = (TodoItemViewHolder) holder;
-                final TodoItem todoItem = todoItemList.get(position);
+                final TodoItem todoItem = todoItemList.get(position - 1);
                 itemViewHolder.getTextTitle().setText(todoItem.getTitle());
                 itemViewHolder.getTextDescription().setText(todoItem.getDescription());
                 itemViewHolder.getTextDate().setText(dateEditor(todoItem));
                 itemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                if (mOnItemSelectedListener != null) {
+                        //                if (mOnItemSelectedListener != null) {
                         mOnItemSelectedListener.onItemClicked(todoItem, holder.getAdapterPosition());
-//                }
+                        //                }
                     }
                 });
                 itemViewHolder.getImageRemove().setOnClickListener(new View.OnClickListener() {
@@ -62,20 +66,26 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 });
                 break;
             case Const.TODO_DATE_TYPE:
+                TodoDateViewHolder dateViewHolder = (TodoDateViewHolder) holder;
+                if (mItemDate != null) {
+                    dateViewHolder.getTextDate().setText(mItemDate.toString());
+                }
                 break;
         }
-
-
     }
 
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        if (position % 2 == 0) {
+            return Const.TODO_DATE_TYPE;
+        } else {
+            return Const.TODO_ITEM_TYPE;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return todoItemList.size();
+        return todoItemList.size() + 1;
     }
 
     public List<TodoItem> getTodoItemList() {
@@ -102,6 +112,10 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         void onItemRemoved(int position);
 
+    }
+
+    public void setItemDate(Date itemDate) {
+        mItemDate = itemDate;
     }
 
 }
