@@ -46,7 +46,7 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         switch (getItemViewType(position)) {
             case Const.TODO_ITEM_TYPE:
                 TodoItemViewHolder itemViewHolder = (TodoItemViewHolder) holder;
-                final TodoItem todoItem = todoItemList.get(position - 1);
+                final TodoItem todoItem = todoItemList.get(position);
                 itemViewHolder.getTextTitle().setText(todoItem.getTitle());
                 itemViewHolder.getTextDescription().setText(todoItem.getDescription());
                 itemViewHolder.getTextDate().setText(dateEditor(todoItem));
@@ -67,25 +67,23 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 break;
             case Const.TODO_DATE_TYPE:
                 TodoDateViewHolder dateViewHolder = (TodoDateViewHolder) holder;
-                if (mItemDate != null) {
-                    dateViewHolder.getTextDate().setText(mItemDate.toString());
-                }
+                dateViewHolder.getTextDate().setText(mItemDate.toString());
                 break;
         }
     }
 
-    @Override
+   /* @Override
     public int getItemViewType(int position) {
         if (position % 2 == 0) {
             return Const.TODO_DATE_TYPE;
         } else {
             return Const.TODO_ITEM_TYPE;
         }
-    }
+    }*/
 
     @Override
     public int getItemCount() {
-        return todoItemList.size() + 1;
+        return todoItemList.size();
     }
 
     public List<TodoItem> getTodoItemList() {
@@ -93,17 +91,18 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     private String dateEditor(TodoItem todoItem) {
-        if (todoItem.getDate() != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(Const.ITEM_DATE_FORMAT);
-            String date = dateFormat.format(todoItem.getDate());
-            date = date.substring(0, 12) + "...";
-            return date;
-        }
-        return "";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyy");
+        String date = dateFormat.format(todoItem.getDate());
+        date = date + "...";
+        return date;
     }
 
     public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
         mOnItemSelectedListener = onItemSelectedListener;
+    }
+
+    public void setItemDate(Date itemDate) {
+        mItemDate = itemDate;
     }
 
     public interface OnItemSelectedListener {
@@ -112,10 +111,6 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         void onItemRemoved(int position);
 
-    }
-
-    public void setItemDate(Date itemDate) {
-        mItemDate = itemDate;
     }
 
 }

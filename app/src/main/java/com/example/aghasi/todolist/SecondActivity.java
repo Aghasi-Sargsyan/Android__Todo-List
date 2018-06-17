@@ -47,10 +47,12 @@ public class SecondActivity extends AppCompatActivity {
 
         mPriorityCounter = 0;
         mRepeatPeriod = null;
-        mDate = null;
+        mDate = Calendar.getInstance().getTime();
         mIsEditButton = false;
 
         idInitialization();
+
+        mTextDateTime.setText(new SimpleDateFormat(Const.SECOND_DATE_FORMAT).format(mDate));
 
         itemEditor();
 
@@ -168,6 +170,24 @@ public class SecondActivity extends AppCompatActivity {
         return new TodoItem(title, description, date);
     }
 
+    private void itemEditor() {
+        Intent intent = getIntent();
+        TodoItem item = (TodoItem) intent.getSerializableExtra(Const.TODO_ITEM_KEY);
+        if (item != null) {
+            mIsEditButton = true;
+            mButtonSave.setText(Const.EDIT_BUTTON_NAME);
+            fieldDisabler();
+            mItemPosition = intent.getIntExtra(Const.ITEM_POSITION_KEY, 0);
+            mEditTitle.setText(item.getTitle());
+            mEditDescription.setText(item.getDescription());
+
+            mDate = item.getDate();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Const.SECOND_DATE_FORMAT);
+            mTextDateTime.setText(simpleDateFormat.format(mDate));
+
+        }
+    }
+
     private void chooseDateAndTime() {
         final Calendar calendar = Calendar.getInstance();
         new DatePickerDialog(this, R.style.SpinnerDate, new DatePickerDialog.OnDateSetListener() {
@@ -189,24 +209,6 @@ public class SecondActivity extends AppCompatActivity {
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)).show();
 
-    }
-
-    private void itemEditor() {
-        Intent intent = getIntent();
-        TodoItem item = (TodoItem) intent.getSerializableExtra(Const.TODO_ITEM_KEY);
-        if (item != null) {
-            mIsEditButton = true;
-            mButtonSave.setText(Const.EDIT_BUTTON_NAME);
-            fieldDisabler();
-            mItemPosition = intent.getIntExtra(Const.ITEM_POSITION_KEY, 0);
-            mEditTitle.setText(item.getTitle());
-            mEditDescription.setText(item.getDescription());
-            if (item.getDate() != null) {
-                mDate = item.getDate();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Const.SECOND_DATE_FORMAT);
-                mTextDateTime.setText(simpleDateFormat.format(mDate));
-            }
-        }
     }
 
     private void fieldDisabler() {

@@ -9,8 +9,6 @@ public class TodoItem implements Serializable {
     private String mDescription;
     private Date mDate;
 
-    public TodoItem(){
-    }
 
     public TodoItem(String title, String description, Date date) {
         this.mTitle = title;
