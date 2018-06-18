@@ -16,13 +16,15 @@ import com.example.aghasi.todolist.util.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<TodoDateItem> todoDateItemList = new ArrayList<>();
 
     private OnItemSelectedListener mOnItemSelectedListener;
+
+    private int dateI = -1;
+    private int itemI = -1;
 
 
     @NonNull
@@ -43,7 +45,7 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
-        Item item = getItemAtPosition(position);
+        Item item = getItem();
 
         switch (getItemViewType(position)) {
             case Const.TODO_ITEM_TYPE:
@@ -75,25 +77,28 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    private Item getItemAtPosition(int position) {
-        /*for (int i = 0; i < todoDateItemList.size(); i++) {
-            for (int j = 0; j < todoDateItemList.get(i).getTodoItemList().size(); j++) {
-                if (position == 0) {
-                    return todoDateItemList.get(i);
-                } else {
-                    if (position + j > position +i) {
-                        return todoDateItemList.get(i).getTodoItemList().get(j);
-                    }
-                }
-            }
-        }*/
+    private Item getItem() {
 
+        if (dateI < todoDateItemList.size() - 1) {
+            dateI++;
+            return todoDateItemList.get(dateI);
+        }
+        if (itemI < todoDateItemList.get(dateI).getTodoItemList().size() - 1) {
+            itemI++;
+            return todoDateItemList.get(dateI).getTodoItemList().get(itemI);
+        } else {
+            if (todoDateItemList.size() - 1 > dateI) {
+                dateI++;
+                itemI = -1;
+                return todoDateItemList.get(dateI);
+            }
+        }
         return null;
     }
 
     @Override
     public int getItemViewType(int position) {
-        Item item = getItemAtPosition(position);
+        Item item = getItem();
         if (item instanceof TodoItem) {
             return Const.TODO_ITEM_TYPE;
         }
@@ -124,7 +129,9 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public void removeFromList(int index) {
-        todoDateItemList.remove(index);
+        /*
+        TODO..............
+        todoDateItemList.remove(index);*/
     }
 
     private String dateEditor(TodoItem todoItem) {
