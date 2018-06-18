@@ -3,12 +3,11 @@ package com.example.aghasi.todolist.items;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TodoItem implements Serializable {
+public class TodoItem extends Item implements Serializable {
 
     private String mTitle;
     private String mDescription;
     private Date mDate;
-
 
     public TodoItem(String title, String description, Date date) {
         this.mTitle = title;

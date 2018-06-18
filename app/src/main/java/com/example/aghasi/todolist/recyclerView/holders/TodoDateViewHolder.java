@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import com.example.aghasi.todolist.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TodoDateViewHolder extends RecyclerView.ViewHolder {
 
     private TextView mTextDate;
@@ -17,6 +20,10 @@ public class TodoDateViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getTextDate() {
         return mTextDate;
+    }
+
+    public void setDateText(Date date) {
+        mTextDate.setText(new SimpleDateFormat("MMMM").format(date));
     }
 
 }

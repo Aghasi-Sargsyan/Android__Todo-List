@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aghasi.todolist.R;
+import com.example.aghasi.todolist.items.Item;
+import com.example.aghasi.todolist.items.TodoDateItem;
 import com.example.aghasi.todolist.items.TodoItem;
 import com.example.aghasi.todolist.recyclerView.holders.TodoDateViewHolder;
 import com.example.aghasi.todolist.recyclerView.holders.TodoItemViewHolder;
@@ -14,14 +16,13 @@ import com.example.aghasi.todolist.util.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.Iterator;
 
 public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<TodoItem> todoItemList = new ArrayList<>();
+
+    private ArrayList<TodoDateItem> todoDateItemList = new ArrayList<>();
 
     private OnItemSelectedListener mOnItemSelectedListener;
-    private Date mItemDate;
 
 
     @NonNull
@@ -37,16 +38,17 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 return new TodoDateViewHolder(view);
             }
         }
-        throw new IllegalStateException("Unknown view type");
+        throw new IllegalStateException("Unknown view type in onCreateViewHolder()");
     }
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+        Item item = getItemAtPosition(position);
 
         switch (getItemViewType(position)) {
             case Const.TODO_ITEM_TYPE:
                 TodoItemViewHolder itemViewHolder = (TodoItemViewHolder) holder;
-                final TodoItem todoItem = todoItemList.get(position);
+                final TodoItem todoItem = (TodoItem) item;
                 itemViewHolder.getTextTitle().setText(todoItem.getTitle());
                 itemViewHolder.getTextDescription().setText(todoItem.getDescription());
                 itemViewHolder.getTextDate().setText(dateEditor(todoItem));
@@ -66,28 +68,63 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 });
                 break;
             case Const.TODO_DATE_TYPE:
+                TodoDateItem todoDateItem = (TodoDateItem) item;
                 TodoDateViewHolder dateViewHolder = (TodoDateViewHolder) holder;
-                dateViewHolder.getTextDate().setText(mItemDate.toString());
+                dateViewHolder.setDateText(todoDateItem.getDate());
                 break;
         }
     }
 
-   /* @Override
+    private Item getItemAtPosition(int position) {
+        /*for (int i = 0; i < todoDateItemList.size(); i++) {
+            for (int j = 0; j < todoDateItemList.get(i).getTodoItemList().size(); j++) {
+                if (position == 0) {
+                    return todoDateItemList.get(i);
+                } else {
+                    if (position + j > position +i) {
+                        return todoDateItemList.get(i).getTodoItemList().get(j);
+                    }
+                }
+            }
+        }*/
+
+        return null;
+    }
+
+    @Override
     public int getItemViewType(int position) {
-        if (position % 2 == 0) {
-            return Const.TODO_DATE_TYPE;
-        } else {
+        Item item = getItemAtPosition(position);
+        if (item instanceof TodoItem) {
             return Const.TODO_ITEM_TYPE;
         }
-    }*/
+        if (item instanceof TodoDateItem) {
+            return Const.TODO_DATE_TYPE;
+        }
+        throw new IllegalStateException("Unknown view type in getItemViewType");
+    }
+
+    public ArrayList<TodoDateItem> getTodoDateItemList() {
+        return todoDateItemList;
+    }
 
     @Override
     public int getItemCount() {
-        return todoItemList.size();
+        int count = 0;
+        for (TodoDateItem dateItem : todoDateItemList) {
+            count++;
+            for (TodoItem item : dateItem.getTodoItemList()) {
+                count++;
+            }
+        }
+        return count;
     }
 
-    public List<TodoItem> getTodoItemList() {
-        return todoItemList;
+    public void addToList(TodoDateItem todoDateItem) {
+        todoDateItemList.add(todoDateItem);
+    }
+
+    public void removeFromList(int index) {
+        todoDateItemList.remove(index);
     }
 
     private String dateEditor(TodoItem todoItem) {
@@ -99,10 +136,6 @@ public class TodoItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
         mOnItemSelectedListener = onItemSelectedListener;
-    }
-
-    public void setItemDate(Date itemDate) {
-        mItemDate = itemDate;
     }
 
     public interface OnItemSelectedListener {
